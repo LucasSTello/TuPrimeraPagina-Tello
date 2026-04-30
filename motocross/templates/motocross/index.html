@@ -1,0 +1,21 @@
+{% extends 'motocross/base.html' %}
+
+{% block title %}Inicio - Yamaha Motocross Blog{% endblock %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-md-6">
+        <h1 class="display-4 fw-bold mb-4" style="color: #0000FF;">Bienvenido al mundo Yamaha Motocross</h1>
+        <p class="lead">Descubre la potencia y la pasión de las motos de cross de Yamaha. En este blog podrás encontrar información sobre los últimos modelos de motos, los pilotos más destacados y las carreras más emocionantes.</p>
+        <p>Explora nuestras secciones para conocer más o utiliza el buscador para encontrar información de una moto en específico.</p>
+        <div class="mt-4">
+            <a href="{% url 'lista_motos' %}" class="btn btn-primary btn-lg me-2 mb-2">Ver Motos</a>
+            <a href="{% url 'lista_pilotos' %}" class="btn btn-outline-secondary btn-lg mb-2">Ver Pilotos</a>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <!-- Imagen ilustrativa -->
+        <img src="https://images.unsplash.com/photo-1549443653-f7267d30f4ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yamaha Motocross" class="img-fluid rounded shadow" style="max-height: 400px; object-fit: cover;">
+    </div>
+</div>
+{% endblock %}

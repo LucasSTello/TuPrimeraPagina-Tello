@@ -1,0 +1,30 @@
+{% extends 'motocross/base.html' %}
+
+{% block title %}Motos - Yamaha Motocross Blog{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Listado de Motos</h2>
+    <a href="{% url 'crear_moto' %}" class="btn btn-success">Agregar Nueva Moto</a>
+</div>
+
+{% if motos %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for moto in motos %}
+    <div class="col">
+        <div class="card h-100 shadow-sm border-primary">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ moto.nombre }} - {{ moto.modelo }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Año: {{ moto.anio }} | Cilindrada: {{ moto.cilindrada }}cc</h6>
+                <p class="card-text">{{ moto.descripcion|truncatewords:20 }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    No hay motos registradas en el sistema. ¡Agrega la primera!
+</div>
+{% endif %}
+{% endblock %}

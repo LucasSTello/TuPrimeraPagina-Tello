@@ -1,0 +1,43 @@
+{% extends 'motocross/base.html' %}
+
+{% block title %}Búsqueda - Yamaha Motocross Blog{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h2 class="mb-4">Resultados de la Búsqueda</h2>
+        <form class="d-flex w-50" action="{% url 'buscar' %}" method="get">
+            <input class="form-control me-2" type="search" placeholder="Buscar Moto por nombre o modelo..." name="q" value="{{ query }}" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
+{% if query %}
+    <h4>Resultados para: <span class="text-primary">"{{ query }}"</span></h4>
+    {% if resultados_motos %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        {% for moto in resultados_motos %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ moto.nombre }} - {{ moto.modelo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Año: {{ moto.anio }} | Cilindrada: {{ moto.cilindrada }}cc</h6>
+                    <p class="card-text">{{ moto.descripcion|truncatewords:20 }}</p>
+                    <a href="{% url 'lista_motos' %}" class="btn btn-sm btn-outline-primary">Ver todas las motos</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning mt-3">
+        No se encontraron motos que coincidan con la búsqueda.
+    </div>
+    {% endif %}
+{% else %}
+    <div class="alert alert-info mt-3">
+        Ingresa un término de búsqueda para encontrar motos por su nombre o modelo.
+    </div>
+{% endif %}
+{% endblock %}
